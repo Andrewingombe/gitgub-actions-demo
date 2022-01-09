@@ -1,8 +1,16 @@
 name: My First Github Action Workflow
 on: [push]
 jobs:
-  print-hello-world:
-    runs-on: ubuntu-lastest
+  build-app:
+    runs-on: windows-lastest
     steps:
-      - run: echo "hello world!!"
-      - run: echo "this is step number 2"
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: "14.17.0"
+      - name: Install node_modules
+        run: npm install
+      - name: build the project
+        run: npm build
+      - name: setup finish
+        run: echo 'hurray'
